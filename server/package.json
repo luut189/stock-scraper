@@ -1,0 +1,35 @@
+{
+    "name": "server",
+    "version": "0.0.0",
+    "main": "src/index.ts",
+    "description": "The backend (server) for stock-scraper",
+    "scripts": {
+        "build": "npx tsc -p .",
+        "prestart": "npm run build",
+        "start": "node dist/index.js",
+        "dev": "npx tsx watch .",
+        "prettier": "prettier . --write",
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "axios": "^1.7.7",
+        "cheerio": "^1.0.0",
+        "cors": "^2.8.5",
+        "express": "^4.21.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.11.1",
+        "@types/cheerio": "^0.22.35",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.7.4",
+        "dotenv": "^16.4.5",
+        "eslint": "^9.11.1",
+        "eslint-config-prettier": "^9.1.0",
+        "globals": "^15.10.0",
+        "prettier": "^3.3.3",
+        "tsx": "^4.19.1",
+        "typescript": "^5.6.2",
+        "typescript-eslint": "^8.8.0"
+    }
+}
