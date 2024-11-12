@@ -1,33 +1,26 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import { StockResponse } from '@/common/interface';
+import Navbar from '@/components/navbar';
+import RequestForm from '@/pages/RequestForm';
+import Display from '@/pages/Display';
+
+export interface IStockResponseState {
+    data: StockResponse[];
+    setData: (value: StockResponse[]) => void;
+}
 
 export default function App() {
-    const [count, setCount] = useState(0);
+    const [data, setData] = useState<StockResponse[]>([]);
 
     return (
-        <div className='flex min-h-screen flex-col items-center justify-center gap-2 bg-blue-50'>
-            <h1 className='text-3xl font-bold'>Vite + React + TS + TailwindCSS</h1>
-            <button
-                className='rounded-md border bg-slate-50 p-2 shadow-sm hover:bg-slate-100'
-                onClick={() => setCount((count) => count + 1)}>
-                Count is {count}
-            </button>
-            <div className='flex flex-col items-center justify-center gap-2 rounded-lg border bg-slate-50 p-5 shadow-sm'>
-                <div className='flex flex-col items-center justify-center gap-2'>
-                    <p>
-                        Edit{' '}
-                        <code className='rounded-md bg-slate-200 p-1 shadow-sm'>src/App.tsx</code>{' '}
-                        and save to test HMR
-                    </p>
-                    <p>
-                        This template app already includes support for{' '}
-                        <span className='font-bold'>shadcn/ui</span> so you can just add new
-                        component by
-                    </p>
-                    <p className='rounded-md bg-slate-200 p-2 shadow-sm'>
-                        <code>npx shadcn@latest add {'<component>'}</code>
-                    </p>
-                </div>
-            </div>
+        <div className='flex min-h-screen flex-col'>
+            <Navbar />
+            <Routes>
+                <Route path='/' element={<RequestForm data={data} setData={setData} />} />
+                <Route path='/display' element={<Display data={data} setData={setData} />} />
+            </Routes>
         </div>
     );
 }
